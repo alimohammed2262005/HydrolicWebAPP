@@ -139,6 +139,10 @@
     display: block;
     line-height: 1.6;
     flex-grow: 1;
+    width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .row-actions {
