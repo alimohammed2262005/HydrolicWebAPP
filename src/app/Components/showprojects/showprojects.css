@@ -6,9 +6,33 @@
 
 .projects-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 35px;
     padding: 20px;
+    direction: rtl;
+}
+
+@media (min-width: 992px) {
+    .projects-list {
+        grid-template-columns: repeat(3, minmax(420px, 1fr));
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .projects-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .projects-list {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 15px;
+    }
 }
 
 .project-row {
@@ -251,7 +275,6 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    left: auto;
     width: 65px;
     height: 65px;
     background: linear-gradient(135deg, #25D366, #20ba5a);
@@ -268,12 +291,8 @@
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 .whatsapp-float:hover {
@@ -312,28 +331,9 @@
 }
 
 @media (max-width: 768px) {
-    .projects-list {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-
-    .project-image {
-        height: 220px;
-    }
-
-    .project-name {
-        font-size: 20px;
-    }
-
-    .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        font-size: 28px;
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .whatsapp-tooltip {
-        display: none;
-    }
+    .projects-list { grid-template-columns: 1fr; gap: 25px; }
+    .project-image { height: 220px; }
+    .project-name { font-size: 20px; }
+    .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 20px; right: 20px; }
+    .whatsapp-tooltip { display: none; }
 }
