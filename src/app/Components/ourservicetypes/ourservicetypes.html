@@ -17,10 +17,10 @@
 
 <div class="services-list" dir="rtl" *ngIf="!loading && services.length > 0" [attr.data-count]="services.length">
   <div class="service-row" *ngFor="let service of services">
-    <span class="service-name">{{ service.serviceName }}</span>
     <div class="service-image">
       <img [src]="environment + '/uploads/' + service.image" alt="{{ service.serviceName }}">
     </div>
+    <span class="service-name">{{ service.serviceName }}</span>
     <span class="service-description">{{ service.description }}</span>
     <div class="row-actions">
       <button class="btn btn-primary" (click)="updateServicetype(service.id)">تعديل</button>
