@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ServiceServices } from '../../Services/service-services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Environment } from '../../Environment/environment';
@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { Roles } from '../../Services/roles';
 import { Spinner } from "../spinner/spinner";
 import { Servicestatus } from '../../Services/SubComponents/servicestatus';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ourservices',
@@ -15,13 +16,14 @@ import { Servicestatus } from '../../Services/SubComponents/servicestatus';
   templateUrl: './ourservices.html',
   styleUrls: ['./ourservices.css'],
 })
-export class Ourservices implements OnInit {
+export class Ourservices implements OnInit, OnDestroy {
   loading = false;
   services: Serviceinterface[] = [];
   hasDeletedServices = false;
   apiMessage = '';
   apiMessageType: 'success' | 'error' = 'success';
   environment = Environment.StaticFiles;
+  private deletedServicesSubscription?: Subscription;
 
   constructor(
     private serviceServices: ServiceServices,
@@ -33,9 +35,17 @@ export class Ourservices implements OnInit {
 
   ngOnInit(): void {
     this.getAllServices();
-    this.serviceStatus.deletedServices$.subscribe(res => {
-      this.hasDeletedServices = res.length > 0;
+    this.checkDeletedServices();
+    
+    this.deletedServicesSubscription = this.serviceStatus.deletedServices$.subscribe(deletedServices => {
+      this.hasDeletedServices = deletedServices.length > 0;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.deletedServicesSubscription) {
+      this.deletedServicesSubscription.unsubscribe();
+    }
   }
 
   getAllServices() {
@@ -52,11 +62,22 @@ export class Ourservices implements OnInit {
     });
   }
 
+  checkDeletedServices() {
+    this.serviceServices.getalldeletedservices().subscribe({
+      next: deleted => {
+        this.serviceStatus.setDeletedServices(deleted);
+      },
+      error: () => {
+        this.serviceStatus.setDeletedServices([]);
+      }
+    });
+  }
+
   deleteservice(id: number) {
     this.loading = true;
     this.serviceServices.deleteservicebyid(id).subscribe({
       next: res => {
-        this.updateDeletedServices();
+        this.checkDeletedServices();
         this.getAllServices();
         this.showApiMessage(res, 'success');
         this.loading = false;
@@ -65,12 +86,6 @@ export class Ourservices implements OnInit {
         this.showApiMessage(err.error || 'حدث خطأ', 'error', 5000);
         this.loading = false;
       }
-    });
-  }
-
-  private updateDeletedServices() {
-    this.serviceServices.getalldeletedservices().subscribe(deleted => {
-      this.serviceStatus.setDeletedServices(deleted);
     });
   }
 
