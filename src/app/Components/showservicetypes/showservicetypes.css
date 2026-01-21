@@ -14,10 +14,11 @@
 @media (min-width: 992px) {
   .services-list {
     grid-template-columns: repeat(3, minmax(360px, 1fr));
-    max-width: 1400px;
+    max-width: 1200px;
+    margin-left: auto;
     margin-right: auto;
-    margin-left: 0;
     justify-content: start;
+    direction: rtl;
   }
 }
 
