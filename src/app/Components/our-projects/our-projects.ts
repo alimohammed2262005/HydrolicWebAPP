@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectServices } from '../../Services/project-services';
 import { CommonModule } from '@angular/common';
@@ -8,6 +8,7 @@ import { Spinner } from "../spinner/spinner";
 import { Environment } from '../../Environment/environment';
 import { Roles } from '../../Services/roles';
 import { Projectstatus } from '../../Services/SubComponents/projectstatus';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-our-projects',
@@ -16,13 +17,14 @@ import { Projectstatus } from '../../Services/SubComponents/projectstatus';
   templateUrl: './our-projects.html',
   styleUrls: ['./our-projects.css']
 })
-export class OurProjects implements OnInit {
+export class OurProjects implements OnInit, OnDestroy {
   loading = false;
   projects: Projectinterface[] = [];
   hasDeletedProjects = false;
   apiMessage = '';
   apiMessageType: 'success' | 'error' = 'success';
   environment = Environment.StaticFiles;
+  private deletedProjectsSubscription?: Subscription;
 
   constructor(
     private projectService: ProjectServices,
@@ -34,9 +36,17 @@ export class OurProjects implements OnInit {
 
   ngOnInit(): void {
     this.getAllProjects();
-    this.projectStatus.deletedprojects$.subscribe(res => {
+    this.checkDeletedProjects();
+    
+    this.deletedProjectsSubscription = this.projectStatus.deletedprojects$.subscribe(res => {
       this.hasDeletedProjects = res.length > 0;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.deletedProjectsSubscription) {
+      this.deletedProjectsSubscription.unsubscribe();
+    }
   }
 
   getAllProjects() {
@@ -49,6 +59,18 @@ export class OurProjects implements OnInit {
       error: () => {
         this.projects = [];
         this.loading = false;
+      }
+    });
+  }
+
+  checkDeletedProjects() {
+    this.projectService.getalldeletedprojects().subscribe({
+      next: deleted => {
+        this.projectStatus.setDeletedProjects(deleted);
+        this.hasDeletedProjects = deleted.length > 0;
+      },
+      error: () => {
+        this.hasDeletedProjects = false;
       }
     });
   }
@@ -73,8 +95,14 @@ export class OurProjects implements OnInit {
   }
 
   private updateDeletedProjects() {
-    this.projectService.getalldeletedprojects().subscribe(deleted => {
-      this.projectStatus.setDeletedProjects(deleted);
+    this.projectService.getalldeletedprojects().subscribe({
+      next: deleted => {
+        this.projectStatus.setDeletedProjects(deleted);
+        this.hasDeletedProjects = deleted.length > 0;
+      },
+      error: () => {
+        this.hasDeletedProjects = false;
+      }
     });
   }
 
