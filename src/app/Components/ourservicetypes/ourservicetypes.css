@@ -2,11 +2,19 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .action-buttons-vertical {
   display: flex;
   flex-direction: row;
   gap: 10px;
   width: 100%;
+  max-width: 100%;
   padding: 0 20px 20px;
   box-sizing: border-box;
   margin-top: 20px;
@@ -20,6 +28,9 @@
   border: none;
   cursor: pointer;
   transition: background 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .action-buttons-vertical button.btn-success {
@@ -45,6 +56,7 @@
   background: white;
   position: relative;
   width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -53,6 +65,8 @@
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 35px;
   padding: 20px;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (min-width: 992px) {
@@ -75,14 +89,19 @@
 
 @media (max-width: 767px) {
   .services-section {
-    padding: 50px 0;
+    padding: 30px 0;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .services-list {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 15px;
+    gap: 25px;
+    padding: 10px;
+    width: 100%;
+    max-width: 100vw;
     direction: rtl;
+    margin: 0;
   }
 
   .service-row {
@@ -91,12 +110,20 @@
     text-align: center;
     width: 100%;
     max-width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  }
+
+  .service-row:hover {
+    transform: translateY(-5px) scale(1);
+    box-shadow: 0 8px 25px rgba(74,157,157,.2);
   }
 
   .service-image {
-    height: 200px;
+    height: 220px;
     width: 100%;
     border-radius: 15px 15px 0 0;
+    overflow: hidden;
   }
 
   .service-image img {
@@ -106,45 +133,107 @@
   }
 
   .service-name {
-    font-size: 20px;
-    padding: 15px 10px 5px;
+    font-size: 22px;
+    padding: 18px 15px 8px;
     width: 100%;
     box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.3;
   }
 
   .service-description {
-    font-size: 14px;
-    padding: 0 10px 15px;
-    line-height: 1.5;
+    font-size: 15px;
+    padding: 8px 15px 18px;
+    line-height: 1.6;
     width: 100%;
     box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    color: #555;
   }
 
   .row-actions {
     display: flex;
     flex-direction: row;
-    gap: 10px;
-    padding: 10px 15px 15px;
+    gap: 12px;
+    padding: 0 15px 18px;
     width: 100%;
     box-sizing: border-box;
   }
 
   .row-actions button {
     flex: 1;
-    padding: 10px 0;
-    font-size: 14px;
+    padding: 12px 8px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    min-height: 44px;
   }
 
   .action-buttons-vertical {
-    flex-direction: row;
-    padding: 0 15px 15px;
+    flex-direction: column;
+    padding: 0 10px 20px;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .action-buttons-vertical button {
+    width: 100%;
+    font-size: 15px;
+    padding: 14px 12px;
+    white-space: normal;
+    line-height: 1.4;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-section {
+    padding: 20px 0;
+  }
+
+  .services-list {
+    padding: 8px;
+    gap: 20px;
+  }
+
+  .service-image {
+    height: 200px;
+  }
+
+  .service-name {
+    font-size: 20px;
+    padding: 15px 12px 8px;
+  }
+
+  .service-description {
+    font-size: 14px;
+    padding: 8px 12px 15px;
+  }
+
+  .row-actions {
+    gap: 10px;
+    padding: 0 12px 15px;
+  }
+
+  .row-actions button {
+    padding: 11px 6px;
+    font-size: 14px;
+    min-height: 42px;
+  }
+
+  .action-buttons-vertical {
+    padding: 0 8px 15px;
     gap: 10px;
   }
 
   .action-buttons-vertical button {
-    flex: 1;
+    padding: 12px 10px;
     font-size: 14px;
-    padding: 10px;
+    min-height: 44px;
   }
 }
 
@@ -161,6 +250,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .service-row::before {
@@ -197,6 +289,7 @@
   height: 280px;
   overflow: hidden;
   border-radius: 15px 15px 0 0;
+  flex-shrink: 0;
 }
 
 .service-image img {
@@ -204,6 +297,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform .5s ease;
+  display: block;
 }
 
 .service-row:hover .service-image img {
@@ -216,6 +310,11 @@
   font-weight: bold;
   color: #2b2b2b;
   padding: 20px 20px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.3;
 }
 
 .service-row:hover .service-name {
@@ -224,15 +323,17 @@
 
 .service-description {
   order: 3;
-  font-size: 15px;
+  font-size: 16px;
   color: #666;
   padding: 0 20px 20px;
-  line-height: 1.6;
+  line-height: 1.7;
   flex-grow: 1;
   width: 100%;
+  box-sizing: border-box;
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  text-align: justify;
 }
 
 .row-actions {
@@ -240,18 +341,22 @@
   display: flex;
   gap: 10px;
   justify-content: center;
-  padding: 20px;
+  padding: 0 20px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .row-actions button {
   flex: 1;
-  padding: 10px 25px;
+  padding: 12px 20px;
   border-radius: 8px;
   border: none;
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  transition: .3s;
+  transition: all .3s ease;
+  min-height: 44px;
 }
 
 .btn-primary {
@@ -292,7 +397,7 @@
   border: 2px dashed #ccc;
   border-radius: 12px;
   max-width: 450px;
-  width: 100%;
+  width: calc(100% - 40px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   transition: transform 0.3s ease;
 }
@@ -306,6 +411,7 @@
   color: #333;
   margin-bottom: 15px;
   font-weight: 600;
+  word-wrap: break-word;
 }
 
 .empty-cart button {
@@ -317,9 +423,27 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  min-height: 44px;
 }
 
 .empty-cart button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
+}
+
+@media (max-width: 767px) {
+  .empty-cart {
+    width: calc(100% - 30px);
+    padding: 30px 15px;
+  }
+
+  .empty-cart h3 {
+    font-size: 18px;
+  }
+
+  .empty-cart button {
+    font-size: 15px;
+    padding: 12px 20px;
+    width: 100%;
+  }
 }
