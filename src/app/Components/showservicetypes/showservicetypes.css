@@ -8,14 +8,16 @@
   display: grid;
   gap: 35px;
   padding: 20px;
+  direction: rtl;
 }
 
 @media (min-width: 992px) {
   .services-list {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1200px;
-    margin: 0 auto;
-    justify-content: center;
+    grid-template-columns: repeat(3, minmax(360px, 1fr));
+    max-width: 1400px;
+    margin-right: auto;
+    margin-left: 0;
+    justify-content: start;
   }
 }
 
