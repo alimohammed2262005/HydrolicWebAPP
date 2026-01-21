@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Servicetypes } from '../../Services/servicetypes';
 import { CommonModule } from '@angular/common';
@@ -8,6 +8,7 @@ import { Spinner } from "../spinner/spinner";
 import { Environment } from '../../Environment/environment';
 import { Roles } from '../../Services/roles';
 import { ServiceTypesstatus } from '../../Services/SubComponents/servicetypesstatus';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-our-services',
@@ -16,13 +17,14 @@ import { ServiceTypesstatus } from '../../Services/SubComponents/servicetypessta
   templateUrl: './ourservicetypes.html',
   styleUrls: ['./ourservicetypes.css']
 })
-export class OurServiceTypes implements OnInit {
+export class OurServiceTypes implements OnInit, OnDestroy {
   loading = false;
   services: Servicetypesinterface[] = [];
   hasDeletedServices = false;
   apiMessage = '';
   apiMessageType: 'success' | 'error' = 'success';
   environment = Environment.StaticFiles;
+  private deletedServicesSubscription?: Subscription;
 
   constructor(
     private serviceTypeService: Servicetypes,
@@ -34,9 +36,17 @@ export class OurServiceTypes implements OnInit {
 
   ngOnInit(): void {
     this.getAllServices();
-    this.serviceTypesStatus.deletedtables$.subscribe(res => {
-      this.hasDeletedServices = res.length > 0;
+    this.checkDeletedServices();
+    
+    this.deletedServicesSubscription = this.serviceTypesStatus.deletedtables$.subscribe(deletedServices => {
+      this.hasDeletedServices = deletedServices.length > 0;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.deletedServicesSubscription) {
+      this.deletedServicesSubscription.unsubscribe();
+    }
   }
 
   getAllServices() {
@@ -53,11 +63,22 @@ export class OurServiceTypes implements OnInit {
     });
   }
 
+  checkDeletedServices() {
+    this.serviceTypeService.getalldeletedservicetypes().subscribe({
+      next: deleted => {
+        this.serviceTypesStatus.setDeletedTables(deleted);
+      },
+      error: () => {
+        this.serviceTypesStatus.setDeletedTables([]);
+      }
+    });
+  }
+
   deleteServiceById(id: number) {
     this.loading = true;
     this.serviceTypeService.deleteservicetypebyid(id).subscribe({
       next: res => {
-        this.updateDeletedServices();
+        this.checkDeletedServices();
         this.getAllServices();
         this.showApiMessage(res, 'success');
         this.loading = false;
@@ -66,12 +87,6 @@ export class OurServiceTypes implements OnInit {
         this.showApiMessage(err.error || 'حدث خطأ', 'error', 5000);
         this.loading = false;
       }
-    });
-  }
-
-  private updateDeletedServices() {
-    this.serviceTypeService.getalldeletedservicetypes().subscribe(deleted => {
-      this.serviceTypesStatus.setDeletedTables(deleted);
     });
   }
 
