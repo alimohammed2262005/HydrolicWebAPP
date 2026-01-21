@@ -152,6 +152,7 @@ body {
     overflow-wrap: break-word;
     white-space: normal;
     color: #555;
+    text-align: center;
   }
 
   .row-actions {
@@ -212,6 +213,7 @@ body {
   .service-description {
     font-size: 14px;
     padding: 8px 12px 15px;
+    text-align: center;
   }
 
   .row-actions {
@@ -333,7 +335,7 @@ body {
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  text-align: justify;
+  text-align: center;
 }
 
 .row-actions {
