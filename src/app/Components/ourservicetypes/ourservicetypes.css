@@ -1,15 +1,15 @@
 .action-buttons-vertical {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 20px 20px;
   box-sizing: border-box;
   margin-top: 20px;
 }
 
 .action-buttons-vertical button {
-  width: 100%;
+  flex: 1;
   padding: 12px;
   font-weight: bold;
   border-radius: 6px;
@@ -96,23 +96,26 @@
   }
 
   .row-actions {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
     gap: 10px;
-    padding: 10px 10px 15px;
+    padding: 10px 15px 15px;
   }
 
   .row-actions button {
-    width: 100%;
+    flex: 1;
     padding: 10px 0;
     font-size: 14px;
   }
 
   .action-buttons-vertical {
-    padding: 0 10px;
-    gap: 8px;
+    flex-direction: row;
+    padding: 0 15px 15px;
+    gap: 10px;
   }
 
   .action-buttons-vertical button {
+    flex: 1;
     font-size: 14px;
     padding: 10px;
   }
@@ -210,6 +213,7 @@
 }
 
 .row-actions button {
+  flex: 1;
   padding: 10px 25px;
   border-radius: 8px;
   border: none;
