@@ -26,10 +26,7 @@ body {
 }
 
 @keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .project-header h2 {
@@ -45,14 +42,8 @@ body {
 }
 
 @keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .section-underline {
@@ -102,10 +93,7 @@ body {
     animation: fadeIn 0.8s ease 1s forwards;
 }
 
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
+@keyframes fadeIn { to { opacity: 1; } }
 
 .slider-wrapper {
     position: relative;
@@ -120,9 +108,7 @@ body {
     animation: zoomIn 1s ease 1.2s forwards;
 }
 
-@keyframes zoomIn {
-    to { opacity: 1; transform: scale(1); }
-}
+@keyframes zoomIn { to { opacity: 1; transform: scale(1); } }
 
 .slider-content {
     width: 100%;
@@ -189,19 +175,11 @@ body {
 }
 
 @keyframes fadeInUpCentered {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -40%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
+    from { opacity: 0; transform: translate(-50%, -40%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
-.empty-cart:hover {
-    transform: translate(-50%, -52%);
-}
+.empty-cart:hover { transform: translate(-50%, -52%); }
 
 .empty-cart h3 {
     font-size: 20px;
@@ -229,15 +207,8 @@ body {
     animation: float 3s ease-in-out infinite, slideInRight 1s ease 1.8s backwards;
 }
 
-@keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-@keyframes slideInRight {
-    from { right: -100px; opacity: 0; }
-    to { right: 30px; opacity: 1; }
-}
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes slideInRight { from { right: -100px; opacity: 0; } to { right: 30px; opacity: 1; } }
 
 .whatsapp-float:hover {
     transform: scale(1.15) rotate(360deg);
@@ -282,7 +253,14 @@ body {
 
 @media (max-width: 768px) {
     .slider-item { height: 300px; }
-    .nav-btn { position: static; transform: none; margin: 10px 20px; }
+    .nav-btn {
+        position: relative;
+        transform: none;
+        margin: 10px 0;
+        font-size: 1.8rem;
+    }
     .slider-wrapper { flex-direction: column; }
     .project-header h2 { font-size: 1.8rem; }
+    .project-header p { font-size: 1rem; text-align: center; margin-bottom: 30px; }
+    .whatsapp-float { width: 50px; height: 50px; font-size: 28px; bottom: 20px; right: 20px; }
 }
