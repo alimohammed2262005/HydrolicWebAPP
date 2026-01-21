@@ -100,12 +100,17 @@
   color: #4a9d9d;
 }
 
+
 .service-description {
-  font-size: 15px;
-  color: #666;
-  padding: 0 20px 20px;
-  line-height: 1.6;
-  flex-grow: 1;
+    font-size: 15px;
+    color: #666;
+    padding: 0 20px 20px;
+    line-height: 1.6;
+    flex-grow: 1;
+    width: 100%;              
+    white-space: normal;       
+    word-wrap: break-word;     
+    overflow-wrap: break-word;
 }
 
 @keyframes cardFloat {
