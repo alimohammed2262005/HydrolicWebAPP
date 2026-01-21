@@ -17,7 +17,6 @@ import { Roles } from '../../Services/roles';
 export class ProjectsImages implements OnInit {
   loading = false;
   projectImages: ProjectImagesInterface[] = [];
-  hasDeletedImages = false;
   apiMessage = '';
   apiMessageType: 'success' | 'error' = 'success';
   environment = Environment.StaticFiles;
@@ -35,7 +34,6 @@ export class ProjectsImages implements OnInit {
     const projectId = +this.routing.snapshot.paramMap.get('id')!;
     this.loadProjectImages(projectId);
     this.projectImagesStatus.deletedprojectImages$.subscribe(res => {
-      this.hasDeletedImages = res.length > 0;
     });
   }
 
@@ -57,7 +55,6 @@ export class ProjectsImages implements OnInit {
     this.loading = true;
     this.projectImagesService.softDeleteProjectImageById(id).subscribe({
       next: res => {
-        this.updateDeletedImages();
         const projectId = +this.routing.snapshot.paramMap.get('id')!;
         this.loadProjectImages(projectId);
         this.showApiMessage(res, 'success');
@@ -69,23 +66,8 @@ export class ProjectsImages implements OnInit {
       }
     });
   }
-
-  private updateDeletedImages() {
-    this.projectImagesService.getAllDeletedProjectImages().subscribe(deleted => {
-      this.projectImagesStatus.setDeletedProjectsImages(deleted);
-    });
-  }
-
-  addImage() {
-    this.router.navigate(['addprojectimage']);
-  }
-
   updateImage(id: number) {
     this.router.navigate(['updateprojectimage', id]);
-  }
-
-  restoreDeletedImages() {
-    this.router.navigate(['getdeletedprojectimages']);
   }
  get isAdmin() {
     return this.roles.isAdmin();
