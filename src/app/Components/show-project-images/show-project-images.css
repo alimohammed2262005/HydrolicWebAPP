@@ -1,3 +1,16 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .project-container {
     max-width: 1200px;
     margin: 60px auto;
@@ -66,23 +79,13 @@
 }
 
 @keyframes expandWidth {
-    from {
-        width: 0;
-    }
-    to {
-        width: 80px;
-    }
+    from { width: 0; }
+    to { width: 80px; }
 }
 
 @keyframes slideRight {
-    from {
-        right: -8px;
-        opacity: 0;
-    }
-    to {
-        right: 0;
-        opacity: 1;
-    }
+    from { right: -8px; opacity: 0; }
+    to { right: 0; opacity: 1; }
 }
 
 .project-header p {
@@ -96,9 +99,7 @@
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+    to { opacity: 1; }
 }
 
 .slider-wrapper {
@@ -115,10 +116,7 @@
 }
 
 @keyframes zoomIn {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .slider-content {
@@ -162,29 +160,50 @@
     animation: fadeIn 0.6s ease 1.5s forwards;
 }
 
-.nav-btn:hover {
-    color: #2a636a;
-}
+.nav-btn:hover { color: #2a636a; }
 
-.prev-btn {
-    right: -70px;
-}
+.prev-btn { right: -70px; }
+.next-btn { left: -70px; }
 
-.next-btn {
-    left: -70px;
-}
-
-.empty-state {
-    padding: 100px 20px;
+.empty-cart {
     text-align: center;
-    color: #888;
+    padding: 40px 20px;
+    background-color: #fdfdfd;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.empty-cart h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.empty-cart button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.empty-cart button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    left: auto;
     width: 65px;
     height: 65px;
     background: linear-gradient(135deg, #25D366, #20ba5a);
@@ -201,23 +220,13 @@
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 @keyframes slideInRight {
-    from {
-        right: -100px;
-        opacity: 0;
-    }
-    to {
-        right: 30px;
-        opacity: 1;
-    }
+    from { right: -100px; opacity: 0; }
+    to { right: 30px; opacity: 1; }
 }
 
 .whatsapp-float:hover {
@@ -256,9 +265,7 @@
 }
 
 @media (max-width: 1024px) {
-    .nav-btn {
-        font-size: 2rem;
-    }
+    .nav-btn { font-size: 2rem; }
     .prev-btn { right: -40px; }
     .next-btn { left: -40px; }
 }
@@ -268,49 +275,4 @@
     .nav-btn { position: static; transform: none; margin: 10px 20px; }
     .slider-wrapper { flex-direction: column; }
     .project-header h2 { font-size: 1.8rem; }
-}
-
-.empty-cart {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #fdfdfd;
-    border: 2px dashed #ccc;
-    border-radius: 12px;
-    max-width: 450px;
-    width: 100%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-.empty-cart:hover {
-    transform: translate(-50%, -55%);
-}
-
-.empty-cart h3 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.empty-cart button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.empty-cart button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
 }
