@@ -3,16 +3,9 @@
      style="margin: 0 auto 20px; text-align: center;">
   {{ apiMessage }}
 </div>
-
-<div class="action-buttons-vertical" *ngIf="projectImages.length > 0" style="text-align: center; margin-bottom: 20px;">
-  <button class="btn btn-success" *ngIf="isAdmin && isAuth" (click)="addImage()">إضافة صورة مشروع</button>
-  <button class="btn btn-warning" *ngIf="hasDeletedImages&&isAdmin && isAuth" (click)="restoreDeletedImages()">استرجاع الصور المحذوفة</button>
-</div>
-
 <div class="text-center w-100" *ngIf="loading">
   <app-spinner></app-spinner>
 </div>
-
 <div class="projects-list" dir="rtl" *ngIf="!loading && projectImages.length > 0" [attr.data-count]="projectImages.length">
   <div class="project-row" *ngFor="let img of projectImages">
     <span class="project-name">{{ img.projectName }}</span>
@@ -34,4 +27,5 @@
   <span>
     <button *ngIf="isAdmin && isAuth" (click)="addImage()">أضف الآن</button>
   </span>
+
 </div>
