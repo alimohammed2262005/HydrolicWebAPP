@@ -37,73 +37,115 @@
 }
 
 .services-section {
-    padding: 100px 0;
-    background: white;
-    position: relative;
+  padding: 100px 0;
+  background: white;
+  position: relative;
 }
 
 .services-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 35px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 35px;
+  padding: 20px;
 }
 
 @media (min-width: 992px) {
-    .services-list[data-count="1"],
-    .services-list[data-count="2"],
-    .services-list[data-count="3"] {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 400px));
-        justify-content: flex-start;
-        max-width: 1400px;
-        margin: 0 auto;
-        direction: rtl;
-    }
+  .services-list[data-count="1"],
+  .services-list[data-count="2"],
+  .services-list[data-count="3"] {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 400px));
+    justify-content: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+    direction: rtl;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .services-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .services-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 767px) {
-    .services-list {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 15px;
-    }
+  .services-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .service-row {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+
+  .service-image {
+    height: 200px;
+  }
+
+  .service-name {
+    font-size: 20px;
+    padding: 15px 10px 5px;
+  }
+
+  .service-description {
+    font-size: 14px;
+    padding: 0 10px 15px;
+    line-height: 1.5;
+  }
+
+  .row-actions {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 10px 15px;
+  }
+
+  .row-actions button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+
+  .action-buttons-vertical {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .action-buttons-vertical button {
+    font-size: 14px;
+    padding: 10px;
+  }
 }
 
 .service-row {
-    background: white;
-    padding: 0;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-    transition: all 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
-    opacity: 0;
-    transform: translateY(50px) scale(0.9);
-    animation: cardFloat 0.8s ease forwards;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+  background: white;
+  padding: 0;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+  transition: all 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+  opacity: 0;
+  transform: translateY(50px) scale(0.9);
+  animation: cardFloat 0.8s ease forwards;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-row::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(74,157,157,0.05), rgba(71,200,216,0.05));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    border-radius: 15px;
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(74,157,157,0.05), rgba(71,200,216,0.05));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 15px;
+  pointer-events: none;
 }
 
-
 .service-row:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .service-row:nth-child(1){animation-delay:.1s}
@@ -115,95 +157,95 @@
 .service-row:nth-child(7){animation-delay:.7s}
 
 .service-row:hover {
-    transform: translateY(-15px) scale(1.03);
-    box-shadow: 0 20px 60px rgba(74,157,157,.25);
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 20px 60px rgba(74,157,157,.25);
 }
 
 .service-image {
-    width: 100%;
-    height: 280px;
-    overflow: hidden;
-    border-radius: 15px 15px 0 0;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
 }
 
 .service-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .5s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
 }
 
 .service-row:hover .service-image img {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .service-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #2b2b2b;
-    padding: 20px 20px 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2b2b2b;
+  padding: 20px 20px 10px;
 }
 
 .service-row:hover .service-name {
-    color: #4a9d9d;
+  color: #4a9d9d;
 }
 
 .service-description {
-    font-size: 15px;
-    color: #666;
-    padding: 0 20px 20px;
-    line-height: 1.6;
-    flex-grow: 1;
-    width: 100%;              
-    white-space: normal;       
-    word-wrap: break-word;     
-    overflow-wrap: break-word;
+  font-size: 15px;
+  color: #666;
+  padding: 0 20px 20px;
+  line-height: 1.6;
+  flex-grow: 1;
+  width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-
 .row-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    padding: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 20px;
 }
 
 .row-actions button {
-    padding: 10px 25px;
-    border-radius: 8px;
-    border: none;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
+  padding: 10px 25px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
 }
 
 .btn-primary {
-    background: #007bff;
-    color: #fff;
+  background: #007bff;
+  color: #fff;
 }
 
 .btn-primary:hover {
-    background: #0056b3;
-    transform: translateY(-3px);
+  background: #0056b3;
+  transform: translateY(-3px);
 }
 
 .btn-danger {
-    background: #dc3545;
-    color: #fff;
+  background: #dc3545;
+  color: #fff;
 }
 
 .btn-danger:hover {
-    background: #c82333;
-    transform: translateY(-3px);
+  background: #c82333;
+  transform: translateY(-3px);
 }
 
 @keyframes cardFloat {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
+
 .empty-cart {
   position: fixed;
   top: 50%;
@@ -230,6 +272,7 @@
   margin-bottom: 15px;
   font-weight: 600;
 }
+
 .empty-cart button {
   background-color: #007bff;
   color: #fff;
@@ -240,6 +283,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 .empty-cart button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
