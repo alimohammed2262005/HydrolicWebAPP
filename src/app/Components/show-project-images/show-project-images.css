@@ -166,6 +166,10 @@ body {
 .next-btn { left: -70px; }
 
 .empty-cart {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     padding: 40px 20px;
     background-color: #fdfdfd;
@@ -174,7 +178,13 @@ body {
     max-width: 450px;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
+}
+
+.empty-cart:hover {
+    transform: translate(-50%, -55%);
 }
 
 .empty-cart h3 {
@@ -184,21 +194,6 @@ body {
     font-weight: 600;
 }
 
-.empty-cart button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.empty-cart button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
 
 .whatsapp-float {
     position: fixed;
