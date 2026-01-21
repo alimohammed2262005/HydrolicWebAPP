@@ -51,6 +51,9 @@ export class ProjectsImages implements OnInit {
     });
   }
 
+  addImage() {
+    this.router.navigate(['addprojectimage']);
+  }
   deleteImage(id: number) {
     this.loading = true;
     this.projectImagesService.softDeleteProjectImageById(id).subscribe({
@@ -82,3 +85,4 @@ export class ProjectsImages implements OnInit {
     setTimeout(() => this.apiMessage = '', timeout);
   }
 }
+
