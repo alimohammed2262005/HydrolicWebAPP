@@ -95,11 +95,13 @@ body {
     max-width: 900px;
     margin: 0 auto 50px auto;
     text-align: justify;
+    text-align-last: center;
     white-space: normal;
     word-wrap: break-word;
     opacity: 0;
     animation: fadeIn 0.8s ease 1s forwards;
 }
+
 
 @keyframes fadeIn {
     to { opacity: 1; }
