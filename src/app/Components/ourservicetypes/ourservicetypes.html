@@ -18,6 +18,7 @@
 
 <div class="services-list" dir="rtl" *ngIf="!loading && services.length > 0" [attr.data-count]="services.length">
   <div class="service-row" *ngFor="let service of services">
+    <span class="service-name">{{ service.serviceTypeName}}</span>
     <div class="service-image">
       <img [src]="environment + '/uploads/' + service.image" alt="{{ service.serviceName }}">
     </div>

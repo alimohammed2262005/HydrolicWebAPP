@@ -17,10 +17,7 @@ export class AddServicetype implements OnInit {
   selectedFile: File | null = null;
   message: string = '';
   messageType: 'success' | 'error' | '' = '';
-
-  // هنبقى عندنا لستة الخدمات الأساسية
   ourServicesList: Serviceinterface[] = [];
-
   constructor(
     private serviceTypeService: Servicetypes,
     private ourServicesService: ServiceServices,
@@ -29,6 +26,7 @@ export class AddServicetype implements OnInit {
     this.serviceForm = new FormGroup({
       serviceName: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
+      servicetypename: new FormControl('', Validators.required),
       image: new FormControl(null, Validators.required)
     });
   }
@@ -62,6 +60,7 @@ export class AddServicetype implements OnInit {
     const formData = new FormData();
     formData.append('ServiceId', this.serviceForm.value.serviceName);
     formData.append('Description', this.serviceForm.value.description);
+    formData.append('ServiceTypeName', this.serviceForm.value.servicetypename);
     formData.append('Image', this.selectedFile, this.selectedFile.name);
 
     this.serviceTypeService.addservicetype(formData).subscribe({
@@ -72,7 +71,6 @@ export class AddServicetype implements OnInit {
       error: err => this.showMessage(err.error, 'error')
     });
   }
-
   private showMessage(msg: string, type: 'success' | 'error') {
     this.message = msg;
     this.messageType = type;
@@ -81,8 +79,8 @@ export class AddServicetype implements OnInit {
       this.messageType = '';
     }, 5000);
   }
-
   get serviceName() { return this.serviceForm.get('serviceName'); }
   get description() { return this.serviceForm.get('description'); }
   get image() { return this.serviceForm.get('image'); }
+  get servicetypename() { return this.serviceForm.get('servicetypename'); }
 }

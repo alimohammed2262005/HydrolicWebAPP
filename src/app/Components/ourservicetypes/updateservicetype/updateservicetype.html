@@ -1,15 +1,12 @@
 <div class="page-center">
   <div class="service-form-wrapper">
     <form [formGroup]="serviceForm" (ngSubmit)="submit()">
-      
       <div *ngIf="message" 
            [ngClass]="{'alert': true, 'success': messageType==='success', 'error': messageType==='error'}"
            class="message-box">
         {{ message }}
       </div>
-
       <h3 class="form-title">تعديل نوع الخدمة</h3>
-
       <div class="form-group">
         <label>اسم الخدمة</label>
         <select class="form-control" formControlName="serviceName">
@@ -20,7 +17,10 @@
           </option>
         </select>
       </div>
-
+      <div class="form-group">
+        <label>اسم نوع الخدمة</label>
+        <input class="form-control" formControlName="serviceTypeName" placeholder="أدخل اسم نوع الخدمة">
+      </div>
       <div class="form-group">
         <label>وصف نوع الخدمة</label>
         <textarea class="form-control" formControlName="description" placeholder="أدخل وصف نوع الخدمة"></textarea>

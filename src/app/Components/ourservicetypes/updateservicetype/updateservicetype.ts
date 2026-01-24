@@ -30,9 +30,10 @@ export class UpdateServicetype implements OnInit {
   ) {
     this.serviceId = Number(this.route.snapshot.paramMap.get('id'));
     this.serviceForm = new FormGroup({
-      serviceName: new FormControl(''), // هنا هيمثل ServiceId
+      serviceName: new FormControl(''), 
       description: new FormControl(''),
-      image: new FormControl(null)
+      image: new FormControl(null),
+      serviceTypeName:new FormControl('')
     });
   }
 
@@ -61,6 +62,7 @@ export class UpdateServicetype implements OnInit {
 
     if (this.serviceForm.value.serviceName) formData.append('ServiceId', this.serviceForm.value.serviceName);
     if (this.serviceForm.value.description) formData.append('Description', this.serviceForm.value.description);
+    if (this.serviceForm.value.serviceTypeName) formData.append('ServiceTypeName', this.serviceForm.value.serviceTypeName);
     if (this.selectedFile) formData.append('Image', this.selectedFile, this.selectedFile.name);
 
     if (formData.keys().next().done) {
@@ -88,5 +90,6 @@ export class UpdateServicetype implements OnInit {
 
   get serviceName() { return this.serviceForm.get('serviceName'); }
   get description() { return this.serviceForm.get('description'); }
+  get servicetypename() { return this.serviceForm.get('serviceTypeName'); }
   get image() { return this.serviceForm.get('image'); }
 }

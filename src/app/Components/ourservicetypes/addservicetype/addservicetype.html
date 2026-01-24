@@ -22,7 +22,13 @@
           <small *ngIf="serviceName?.errors?.['required']">اسم الخدمة مطلوب.</small>
         </div>
       </div>
-
+      <div class="form-group">
+        <label>اسم نوع الخدمة</label>
+        <textarea class="form-control" formControlName="servicetypename" placeholder="أدخل اسم نوع الخدمة"></textarea>
+        <div *ngIf="servicetypename?.touched && servicetypename?.invalid" class="error">
+          <small>الإسم مطلوب.</small>
+        </div>
+      </div>
       <div class="form-group">
         <label>وصف نوع الخدمة</label>
         <textarea class="form-control" formControlName="description" placeholder="أدخل وصف نوع الخدمة"></textarea>

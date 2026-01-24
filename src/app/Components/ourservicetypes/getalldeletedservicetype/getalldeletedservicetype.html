@@ -17,6 +17,7 @@
       class="img-fluid rounded shadow-sm" 
       style="max-height: 280px; object-fit: cover; width: 100%;" />
     </span>
+    <span class="service-name">{{ service.serviceTypeName}}</span>
     <span class="service-description">{{ service.description }}</span>
     <div class="row-actions">
       <button class="btn btn-danger" (click)="restoreService(service.id)">استرجاع</button>
